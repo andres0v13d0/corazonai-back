@@ -21,13 +21,15 @@ passport.use(
   })
 );
 
+const backendUrl = process.env.BACKEND_URL || "http://localhost:3000";
+
 // GOOGLE
 passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/api/auth/google/callback",
+      callbackURL: `${backendUrl}/api/auth/google/callback`,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -54,7 +56,7 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_CLIENT_ID,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-      callbackURL: "/api/auth/facebook/callback",
+      callbackURL: `${backendUrl}/api/auth/facebook/callback`,
       profileFields: ["id", "emails", "name", "displayName", "photos"],
     },
     async (accessToken, refreshToken, profile, done) => {
