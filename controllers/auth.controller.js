@@ -15,13 +15,11 @@ export const login = async (req, res) => {
       expiresIn: "7d",
     });
 
-    
-
     res.cookie("token", token, {
-        httpOnly: true,
-        sameSite: process.env.NODE_ENV === 'production' ? "None" : "Lax",
-        secure: process.env.NODE_ENV === 'production',
-        domain: ".surtte.com",
+      httpOnly: true,
+      sameSite: process.env.NODE_ENV === 'production' ? "None" : "Lax",
+      secure: process.env.NODE_ENV === 'production',
+      domain: ".surtte.com",
     });
       
 
@@ -34,9 +32,10 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
     res.clearCookie("token", {
-        sameSite: "None",
-        secure: process.env.NODE_ENV === "production",
-        
+      sameSite: "None",
+      secure: process.env.NODE_ENV === "production",
+      domain: ".surtte.com",
+      path: "/",
     });
     res.json({ message: "Sesión cerrada" });
 };
