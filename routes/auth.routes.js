@@ -30,9 +30,10 @@ router.get(
     const isProduction = process.env.NODE_ENV === 'production';
 
     res.cookie("token", token, {
-    httpOnly: true,
-    sameSite: isProduction ? "None" : "Lax", // 🔄 Lax en local
-    secure: isProduction,                   // ✅ false en local
+      httpOnly: true,
+      sameSite: isProduction ? "None" : "Lax", // 🔄 Lax en local
+      secure: isProduction,
+      domain: ".surtte.com",                   // ✅ false en local
     });
 
       
@@ -59,6 +60,7 @@ router.get(
       httpOnly: true,
       sameSite: "None",
       secure: false,
+      domain: ".surtte.com",
     });
 
     res.redirect(`${process.env.FRONTEND_URL}/callback`);

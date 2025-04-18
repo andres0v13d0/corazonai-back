@@ -21,6 +21,7 @@ export const login = async (req, res) => {
         httpOnly: true,
         sameSite: process.env.NODE_ENV === 'production' ? "None" : "Lax",
         secure: process.env.NODE_ENV === 'production',
+        domain: ".surtte.com",
     });
       
 
