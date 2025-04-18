@@ -32,8 +32,12 @@ export const login = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  res.clearCookie("token");
-  res.json({ message: "Sesión cerrada" });
+    res.clearCookie("token", {
+        sameSite: "None",
+        secure: process.env.NODE_ENV === "production",
+        
+    });
+    res.json({ message: "Sesión cerrada" });
 };
 
 export const register = async (req, res) => {
